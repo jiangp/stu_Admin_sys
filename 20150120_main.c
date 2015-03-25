@@ -9,16 +9,16 @@ int main(int argc, char* argv[])
 	int select;
 	int search_id;
 	char search_name[NAME_LEN];
-	pSTU stu_add_infor=NULL;
+	pSTU stu_add_infor = NULL;
 	system_init(argv[1], &account_list, &stu_list);
 
-	if( (role = role_confirm(account_list) )== -1)
+	if( (role = role_confirm(account_list) ) == -1)
 	{
-		printf("fail to login\n");
-		system("pause");
+		printf(" fail to login \n");
+		system(" pause ");
 		return 0 ;
 	}
-	while(system("cls"),(select = show_system_menu(role)) != 9)
+	while(system("cls"), (select = show_system_menu(role)) != 9)
 	{
 		if(role == 1)
 		{
@@ -26,17 +26,17 @@ int main(int argc, char* argv[])
 			{
 			case 1: 
 				{
-					while(fflush(stdin),(select=show_search_menu(role))!=3)
+					while(fflush(stdin), (select=show_search_menu(role)) != 3)
 					{
-						if(select==2)
+						if(select == 2)
 						{
 							system("cls");
-				            printf("Enter seach_id : ");
+				            printf(" Enter seach_id : ");
 							
 							fflush(stdout);
 				            fflush(stdin);
-							scanf("%d",&search_id);
-							search_usr_infor_by_id(&stu_list,search_id);
+							scanf("%d", &search_id);
+							search_usr_infor_by_id(&stu_list, search_id);
 							fflush(stdin);
 				            getchar();
 			        
@@ -47,15 +47,15 @@ int main(int argc, char* argv[])
 							fflush(stdout);
 				            fflush(stdin);
 							gets(search_name);
-							search_usr_infor_by_name(&stu_list,search_name);
+							search_usr_infor_by_name(&stu_list, search_name);
 				            getchar();
-				         //   getchar();
+				            getchar();
 
 						}else
 						{
-							search_usr_infor_by_id(&stu_list,0);
+							search_usr_infor_by_id(&stu_list, 0);
 							getchar();
-				          //  getchar();
+				            getchar();
 						}
 					}
 				}
@@ -64,9 +64,9 @@ int main(int argc, char* argv[])
 				{
 					system("cls");
 				    printf("add student information:\n");
-                    add_usr_infor(argv[1],&stu_list);
+                    add_usr_infor(argv[1], &stu_list);
 					getchar();
-				//	getchar();
+					getchar();
 
 				}
 				break;
@@ -77,9 +77,9 @@ int main(int argc, char* argv[])
 					fflush(stdout);
 					fflush(stdin);
 					scanf("%d", &search_id);
-					update_usr_infor(argv[1],&stu_list,search_id);
+					update_usr_infor(argv[1], &stu_list, search_id);
 					getchar();
-				//	getchar();
+					getchar();
 				break;
 			case 4: 
 				
@@ -90,10 +90,10 @@ int main(int argc, char* argv[])
 				//	if( (scanf("%d", &search_id) == 1) )
 				//	{
 				    	scanf("%d", &search_id);
-						delete_usr_infor(argv[1],&stu_list,search_id);
+						delete_usr_infor(argv[1], &stu_list, search_id);
 						fflush(stdin);
 						getchar();
-					//	getchar();
+						getchar();
 			//		}
 				break;
 			case 5:  
@@ -102,13 +102,13 @@ int main(int argc, char* argv[])
 				fflush(stdout);
 				fflush(stdin);
 				gets(search_name);           
-				search_account_infor_by_name(&account_list,search_name);
+				search_account_infor_by_name(&account_list, search_name);
 				getchar();
 				break;
 			case 6: 
 				system("cls");
 			    printf("Enter add account name: ");
-				add_account_infor(argv[1],&account_list);
+				add_account_infor(argv[1], &account_list);
 				getchar();
 				break;
 			case 7:  
@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
 				fflush(stdin);
 				printf("Enter update account name:");
 				gets(search_name);
-				update_account_infor(argv[1],&account_list,search_name);
+				update_account_infor(argv[1], &account_list, search_name);
 				getchar();
 				break;
 			case 8: 
@@ -126,7 +126,7 @@ int main(int argc, char* argv[])
 				fflush(stdin);
 				printf("Enter delete account name:");
 				gets(search_name);
-				delete_account_infor(argv[1],&account_list,search_name);
+				delete_account_infor(argv[1], &account_list, search_name);
 				getchar();
 				break;
 			case 9: 
@@ -139,35 +139,35 @@ int main(int argc, char* argv[])
 			{
 			case 1: 
 				 {
-					while(fflush(stdin),(select=show_search_menu(role))!=3)
+					while(fflush(stdin), (select = show_search_menu(role)) != 3)
 					{
-						if(select==2)
+						if(select == 2)
 						{
 							system("cls");
 				            printf("Enter seach_id : ");
 							
 							fflush(stdout);
 				            fflush(stdin);
-							scanf("%d",&search_id);
-							search_usr_infor_by_id(&stu_list,search_id);
+							scanf("%d", &search_id);
+							search_usr_infor_by_id(&stu_list, search_id);
 							fflush(stdin);
 				            getchar();
 				      
-						}else if(select==1)
+						}else if(select == 1)
 						{
 							system("cls");
 				            printf("Enter seach name : ");
 							fflush(stdout);
 				            fflush(stdin);
 					    	gets(search_name);
-							search_usr_infor_by_name(&stu_list,search_name);
+							search_usr_infor_by_name(&stu_list, search_name);
 							fflush(stdin);
 				            getchar();
 				        
 
 						}else
 						{
-							search_usr_infor_by_id(&stu_list,0);
+							search_usr_infor_by_id(&stu_list, 0);
 							getchar();
 				            getchar();
 						}

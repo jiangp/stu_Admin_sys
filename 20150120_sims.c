@@ -1,10 +1,10 @@
 #include"20150120_sims.h"
 
 //stu_info
-void trim_space(char*src)
+void trim_space(char *src)
 {
 	int fast_index, last_index ;
-	for(fast_index = 0, last_index = -1 ; src[fast_index] != 0 ;fast_index ++)
+	for(fast_index = 0, last_index = -1 ; src[fast_index] != 0 ;fast_index++)
 	{
 		if(!isspace(src[fast_index]))
 		{
@@ -13,13 +13,13 @@ void trim_space(char*src)
 		{
 			if(last_index != -1 && !isspace(src[last_index]) )
 			{
-				src[++last_index] =' ';
+				src[++last_index] = ' ';
 			}
 		}
 	}
 	src[++last_index] = 0;
 }//去空格
-void system_init(char* config, pACCOUNT* pphead_acc, pSTU* pphead_stu)
+void system_init(char *config, pACCOUNT *pphead_acc, pSTU *pphead_stu)
 {
 	FILE* fp_config, *fp_account, *fp_stu ;
 	char line[LINE_LEN] ;
@@ -69,7 +69,7 @@ void system_init(char* config, pACCOUNT* pphead_acc, pSTU* pphead_stu)
 	}
 	fclose(fp_account);
 
-
+//read the students mag
 	memset(line, 0, sizeof(line));
 	fgets(line, LINE_LEN, fp_config);//open222222
 	line[strlen(line) - 1] = 0;
@@ -116,7 +116,7 @@ int role_confirm(pACCOUNT phead_acc)
 	int cnt = 0 ,index;
 	pACCOUNT pcur ;
 	char usr_name[NAME_LEN] ;
-	char usr_passwd[PWD_LEN]={0};
+	char usr_passwd[PWD_LEN] = {0};
 	while(cnt < CONFIRM_CNT)
 	{
 		system("cls");
@@ -126,17 +126,16 @@ int role_confirm(pACCOUNT phead_acc)
 		usr_name[strlen(usr_name) - 1] = 0 ;
 		printf("请输入密码 :");
 		fflush(stdin);
-		for(index=0;;index++)
+		for(index=0; ; index++)
 		{
-		   usr_passwd[index]=getch();
+		   usr_passwd[index] = getch();
 
-		   if(usr_passwd[index]==13)
+		   if(usr_passwd[index] == 13)
 		      {
 				  break;
 		      }
 		   printf("*");
 		}
-		//fgets(usr_passwd, PWD_LEN, stdin);
 		usr_passwd[strlen(usr_passwd) - 1] = '\0' ;
 
 		pcur = phead_acc ;
@@ -259,13 +258,13 @@ int show_search_menu(int role)
 	return search - '0';
 }
 
-void search_usr_infor_by_id(pSTU *infor,int psearch_id)
+void search_usr_infor_by_id(pSTU *infor, int psearch_id)
 {
-	pSTU pcur=*infor;
+	pSTU pcur = *infor;
 	char line[1024];	
 	while(pcur)
 	{
-		if(pcur->m_id==psearch_id)
+		if(pcur->m_id == psearch_id)
 		{
 			printf("\n");
 			printf("ID  name     sex   socers1      2        3      4        5\n");
@@ -273,38 +272,39 @@ void search_usr_infor_by_id(pSTU *infor,int psearch_id)
 			puts(line);
 			break;
 		}
-		if(pcur->m_next==NULL)
+		if(pcur->m_next == NULL)
 		{
 			printf("sorry id error\n");
 			break;
 		}
-		pcur=pcur->m_next;
+		pcur = pcur->m_next;
 	}
 }
-void search_usr_infor_by_name(pSTU *infor,char *psearch_name)
+void search_usr_infor_by_name(pSTU *infor, char *psearch_name)
 {
-	pSTU pcur=*infor;
+	pSTU pcur = *infor;
 	char line[1024];
 	while(pcur)
 	{
-		if(strcmp(pcur->m_name,psearch_name)==0)
+		if(strcmp(pcur->m_name, psearch_name) == 0)
 		{
 			printf("\n");
 			printf("ID  name      sex socers  1      2       3      4       5\n");
-			sprintf(line, " %-3d%-10s  %-3s      %4.1f   %4.1f    %4.1f   %4.1f    %4.1f\n",pcur->m_id,pcur->m_name,&pcur->m_gender,pcur->m_socres[0],pcur->m_socres[1],pcur->m_socres[2],pcur->m_socres[3],pcur->m_socres[4]);
+			sprintf(line, " %-3d%-10s  %-3s      %4.1f   %4.1f    %4.1f   %4.1f    %4.1f\n", pcur->m_id, pcur->m_name, &pcur->m_gender, pcur->m_socres[0], pcur->m_socres[1], pcur->m_socres[2], pcur->m_socres[3], pcur->m_socres[4]);
 			puts(line);
 			break;
 		}
-		if(pcur==NULL)
+		pcur = pcur->m_next;
+		if(pcur == NULL)
 		{
 			printf("sorry name error");
 			break;
 		}
-		pcur=pcur->m_next;
+		
 	}
 }
 
-void add_usr_infor(char* config,pSTU *infor)
+void add_usr_infor(char *config, pSTU *infor)
 {
 	FILE* fp_config, *fp_write;
 
@@ -362,7 +362,7 @@ void add_usr_infor(char* config,pSTU *infor)
 	printf("增加成功！\n");
 
 }
-void update_usr_infor(char* config,pSTU* infor,int psearch_id)
+void update_usr_infor(char *config, pSTU *infor, int psearch_id)
 {
 	pSTU pcur=*infor,temp;
 	int index;
@@ -419,7 +419,7 @@ void update_usr_infor(char* config,pSTU* infor,int psearch_id)
 		}	
 	}
 }
-void delete_usr_infor(char* config,pSTU* infor,int psearch_id)
+void delete_usr_infor(char *config, pSTU *infor, int psearch_id)
 {
 	pSTU pcur=*infor,temp,ppre=NULL;
 	char line[LINE_LEN];
@@ -480,21 +480,21 @@ void delete_usr_infor(char* config,pSTU* infor,int psearch_id)
 //stu_account
 void search_account_infor_by_name(pACCOUNT *head, char *psearch_name)
 {
-	pACCOUNT pcur=*head;
+	pACCOUNT pcur = *head;
 	char line[1024];
 	while(pcur)
 	{
-		if(strcmp(pcur->m_name,psearch_name)==0)
+		if(strcmp(pcur->m_name,psearch_name) == 0)
 		{
 			printf("\n");
-			memset(line,0,1024);
+			memset(line, 0, 1024);
 			printf("name       passwd     role\n");
-			sprintf(line, "%-10s %-10s  %d\n",pcur->m_name,pcur->m_passwd,pcur->m_role);
+			sprintf(line, "%-10s %-10s  %d\n",pcur->m_name, pcur->m_passwd, pcur->m_role);
 			puts(line);
 			break;
 		}
-		pcur=pcur->m_next;
-		if(pcur==NULL)
+		pcur = pcur->m_next;
+		if(pcur == NULL)
 		{
 			printf("sorry name error");
 			break;
@@ -502,19 +502,19 @@ void search_account_infor_by_name(pACCOUNT *head, char *psearch_name)
 		
 	}
 }
-void add_account_infor(char* config,pACCOUNT *head)
+void add_account_infor(char *config,pACCOUNT *head)
 {
-	FILE* fp_config, *fp_write;
+	FILE *fp_config, *fp_write;
 
 	char line[LINE_LEN];
 	pACCOUNT pnew,pcur,temp;
-	pnew=(pACCOUNT)calloc(1,sizeof(ACCOUNT));
+	pnew=(pACCOUNT)calloc(1, sizeof(ACCOUNT));
 	fflush(stdin);
-	scanf("%s",&pnew->m_name);
+	scanf("%s", &pnew->m_name);
     pcur=*head;
-	while(pcur&&strcmp(pnew->m_name,pcur->m_name)!=0)
+	while(pcur && strcmp(pnew->m_name, pcur->m_name)!=0)
 	{
-		pcur=pcur->m_next;
+		pcur = pcur->m_next;
 	}
 	if(pcur)
 	{
@@ -524,13 +524,13 @@ void add_account_infor(char* config,pACCOUNT *head)
 		return ;
 	}
 	printf("输入密码：");
-	scanf("%s",&pnew->m_passwd);
+	scanf("%s", &pnew->m_passwd);
 	printf("输入账户权限：");
-	scanf("%d",&pnew->m_role);	
+	scanf("%d", &pnew->m_role);	
 	//添加结构体至链表
-	pcur=*head;
-	pnew->m_next=pcur;
-	*head=pnew;	
+	pcur = *head;
+	pnew->m_next = pcur;
+	*head = pnew;	
 	
 	//打开文件
 	fp_config = fopen(config, "r");
@@ -541,36 +541,36 @@ void add_account_infor(char* config,pACCOUNT *head)
 
 	fp_write = fopen(line, "a");//打开文件写一行
 
-	pcur=*head;
+	pcur = *head;
 
-		memset(line,0,sizeof(line));
-		sprintf(line, "%-10s%-10s%d\n",pcur->m_name,pcur->m_passwd,pcur->m_role);
-		puts(line);
-		fputs(line,fp_write);
+	memset(line, 0, sizeof(line));
+	sprintf(line, "%-10s%-10s%d\n", pcur->m_name, pcur->m_passwd, pcur->m_role);
+	puts(line);
+	fputs(line, fp_write);
 
 	fclose(fp_write);
 	printf("增加成功！\n");
 
 }
-void update_account_infor(char* config,pACCOUNT *head,char *psearch_name)
+void update_account_infor(char *config,pACCOUNT *head,char *psearch_name)
 {
-	pACCOUNT pcur=*head,temp;
+	pACCOUNT pcur = *head, temp;
 	int index;
 	char line[LINE_LEN];
-	FILE * fp_config, *fp_write;
+	FILE *fp_config, *fp_write;
 
 	while(pcur)
 	{ 
 		
-		if(strcmp(pcur->m_name,psearch_name) == 0 )
+		if(strcmp(pcur->m_name, psearch_name) == 0 )
 		{
 			//输入更新内容
 			printf("name: ");
-			scanf("%s",&pcur->m_name);
+			scanf("%s", &pcur->m_name);
 			printf("passwd: ");
-			scanf("%s",&pcur->m_passwd);
+			scanf("%s", &pcur->m_passwd);
 			printf("role: ");
-			scanf("%d",&pcur->m_role);
+			scanf("%d", &pcur->m_role);
 			
 			//打开文件
 			fp_config = fopen(config, "r");
@@ -581,23 +581,23 @@ void update_account_infor(char* config,pACCOUNT *head,char *psearch_name)
 
 			fp_write = fopen(line, "w");
 
-			pcur=*head;
+			pcur = *head;
 			while(pcur)
 			{
-				memset(line,0,sizeof(line));
-				sprintf(line, "%-10s%-10s%d\n",pcur->m_name,pcur->m_passwd,pcur->m_role);
+				memset(line, 0, sizeof(line));
+				sprintf(line, "%-10s%-10s%d\n", pcur->m_name, pcur->m_passwd, pcur->m_role);
 				//puts(line);
-				fputs(line,fp_write);
-				temp=pcur;
-				pcur=pcur->m_next;
+				fputs(line, fp_write);
+				temp = pcur;
+				pcur = pcur->m_next;
 				free(temp);
 			}
 			printf("更新完毕！\n");
 		    fflush(stdin);
 			break;
 		}
-		pcur=pcur->m_next;
-		if(pcur==NULL)
+		pcur = pcur->m_next;
+		if(pcur == NULL)
 		{
            printf("没有这个账户！\n");
 		   fflush(stdin);
@@ -607,14 +607,14 @@ void update_account_infor(char* config,pACCOUNT *head,char *psearch_name)
 }
 void delete_account_infor(char* config,pACCOUNT *head,char *psearch_name)
 {
-	pACCOUNT pcur=*head,temp,ppre=NULL;
+	pACCOUNT pcur = *head,temp,ppre = NULL;
 	char line[LINE_LEN];
 	FILE * fp_config, *fp_write;
 
-	while(pcur&&strcmp(pcur->m_name,psearch_name) != 0 )
+	while(pcur && strcmp(pcur->m_name, psearch_name) != 0 )
 	{
-		ppre=pcur;
-		pcur=pcur->m_next;
+		ppre = pcur;
+		pcur = pcur->m_next;
 	}
 		if(pcur == NULL)
 		{
@@ -626,11 +626,11 @@ void delete_account_infor(char* config,pACCOUNT *head,char *psearch_name)
 			
 			if(ppre == NULL)
 			{
-				*head=pcur->m_next;
+				*head = pcur->m_next;
 				free(pcur);
 			}else
 			{
-				ppre->m_next=pcur->m_next;
+				ppre->m_next = pcur->m_next;
 				free(pcur);
 			}
 
@@ -644,15 +644,15 @@ void delete_account_infor(char* config,pACCOUNT *head,char *psearch_name)
 
 			fp_write = fopen(line, "w");
 
-			pcur=*head;
+			pcur = *head;
 			while(pcur)
 			{
-				memset(line,0,sizeof(line));
-				sprintf(line, "%-10s%-10s%d\n",pcur->m_name,pcur->m_passwd,pcur->m_role);
+				memset(line, 0, sizeof(line));
+				sprintf(line, "%-10s%-10s%d\n", pcur->m_name, pcur->m_passwd, pcur->m_role);
 				//puts(line);
-				fputs(line,fp_write);
-				temp=pcur;
-				pcur=pcur->m_next;
+				fputs(line, fp_write);
+				temp = pcur;
+				pcur = pcur->m_next;
 				free(temp);
 			}
 			printf("删除完成！\n");

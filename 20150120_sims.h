@@ -26,29 +26,29 @@ typedef struct stu_accout_tag
 {
 	char m_passwd[PWD_LEN];
 	char m_name[20];
-	int  m_role ;
-	struct stu_accout_tag* m_next ;
+	int  m_role;
+	struct stu_accout_tag *m_next;
 }ACCOUNT, *pACCOUNT;
 typedef struct stu_info_tag
 {
 	int m_id ;
 	char m_name[NAME_LEN];
-	char m_gender ;
-	float m_socres[5] ;
-	struct stu_info_tag* m_next ;
+	char m_gender;
+	float m_socres[5];
+	struct stu_info_tag *m_next ;
 }STU, *pSTU;
 
-void system_init(char* config, pACCOUNT* pphead_acc, pSTU* pphead_stu) ;
+void system_init(char *config, pACCOUNT *pphead_acc, pSTU *pphead_stu) ;
 int role_confirm(pACCOUNT phead_acc);
 int show_system_menu(int role);
 int show_search_menu(int role);
-void search_usr_infor_by_id(pSTU *infor,int psearch_id);
-void search_usr_infor_by_name(pSTU *infor,char *psearch_name);
-void add_usr_infor(char* config,pSTU *infor);
-void update_usr_infor(char* config,pSTU* infor,int search_id);
-void delete_usr_infor(char* config,pSTU* infor,int search_id);
+void search_usr_infor_by_id(pSTU *infor, int psearch_id);
+void search_usr_infor_by_name(pSTU *infor, char *psearch_name);
+void add_usr_infor(char *config, pSTU *infor);
+void update_usr_infor(char *config, pSTU *infor, int search_id);
+void delete_usr_infor(char *config, pSTU *infor, int search_id);
 void search_account_infor_by_name(pACCOUNT *head, char *psearch_name);
-void add_account_infor(char* config,pACCOUNT *head);
-void update_account_infor(char* config,pACCOUNT *head,char *psearch_name);
-void delete_account_infor(char* config,pACCOUNT *head,char *psearch_name);
+void add_account_infor(char *config, pACCOUNT *head);
+void update_account_infor(char *config, pACCOUNT *head, char *psearch_name);
+void delete_account_infor(char *config, pACCOUNT *head, char *psearch_name);
 #endif
